@@ -2,8 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Panier;
-
 class PanierRepository
 {
     function connect()
