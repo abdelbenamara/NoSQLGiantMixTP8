@@ -1,18 +1,11 @@
 <?php
 
-namespace App\Entity;
-
 class Panier
 {
     /**
-     * @var int
-     */
-    private $idPanier;
-
-    /**
      * @var array
      */
-    private $produits;
+    private array $produits;
 
     /**
      * @return array
@@ -28,13 +21,5 @@ class Panier
     public function setProduits(array $produits): void
     {
         $this->produits = $produits;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdPanier(): int
-    {
-        return $this->idPanier;
     }
 }

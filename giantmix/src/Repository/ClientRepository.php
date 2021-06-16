@@ -1,9 +1,5 @@
 <?php
 
-namespace App\Repository;
-
-use App\Entity\Client;
-
 class ClientRepository
 {
     function connect()

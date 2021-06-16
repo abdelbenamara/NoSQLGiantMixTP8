@@ -1,9 +1,5 @@
 <?php
 
-namespace App\Repository;
-
-use App\Entity\Commande;
-
 class CommandeRepository
 {
     function connect()

@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Entity;
-
 class Produit
 {
     /**
      * @var int
      */
-    private $idProduit;
+    private int $idProduit;
 
     /**
      * @var string
      */
-    private $nom;
+    private string $nom;
 
     /**
      * @return int

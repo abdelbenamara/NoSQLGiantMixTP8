@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Entity;
-
 class Client
 {
     /**
      * @var int
      */
-    private $idClient;
+    private int $idClient;
 
     /**
      * @var Panier
      */
-    private $panier;
+    private Panier $panier;
 
     /**
      * @var array
      */
-    private $commandes;
+    private array $commandes;
 
     /**
      * @return int

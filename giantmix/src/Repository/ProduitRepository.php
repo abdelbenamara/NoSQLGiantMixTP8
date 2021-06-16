@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Repository;
-
 class ProduitRepository
 {
     function connect()
