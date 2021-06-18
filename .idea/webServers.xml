@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5592d0bc-0ce0-414e-b890-dd8693974863" name="WAMP" url="http://localhost">
+        <fileTransfer mountedRoot="C:\wamp64\www\TP8" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

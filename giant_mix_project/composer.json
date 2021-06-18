@@ -4,7 +4,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "elasticsearch/elasticsearch": "~7.0",
+    "elasticsearch/elasticsearch": "^7.13",
     "mongodb/mongodb": "^1.8",
     "predis/predis": "^1.1"
   }
