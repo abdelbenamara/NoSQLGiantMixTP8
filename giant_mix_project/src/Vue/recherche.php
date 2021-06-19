@@ -1,4 +1,7 @@
 <?php
+
+require "../Controller/RechercheController.php";
+
 $product = array();
 
 if(isset($_GET["q"])){
@@ -26,10 +29,11 @@ if(isset($_GET["q"])){
 <table>
     <?php
     foreach ($product as $p){
-        echo "<td>".$p->getNom()."</td>";
+
+        echo "<tr><td>".$p->getNom()."</td>";
         echo "<td>".$p->getType()."</td>";
         echo "<td>".$p->getMarque()."</td>";
-        echo "<td>".$p->getPrix()."</td>";
+        echo "<td>".$p->getPrix()."€</td></tr>";
     }
     ?>
 <!---

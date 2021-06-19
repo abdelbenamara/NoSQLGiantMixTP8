@@ -1,6 +1,6 @@
 <?php
-require 'vendor/autoload.php';
-require  'src/Entity/Produit.php';
+require '../../vendor/autoload.php';
+require  '../Entity/Produit.php';
 use Elasticsearch\ClientBuilder;
 
 class ProduitRepository

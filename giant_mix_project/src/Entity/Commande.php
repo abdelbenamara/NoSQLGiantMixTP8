@@ -5,7 +5,7 @@ namespace App\Entity;
 class Commande
 {
     /**
-     * @var int
+     * @var string
      */
     private $idCommande;
 
@@ -15,9 +15,9 @@ class Commande
     private $qteProduits;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdCommande(): int
+    public function getIdCommande(): string
     {
         return $this->idCommande;
     }

@@ -5,7 +5,7 @@ namespace App\Entity;
 class Panier
 {
     /**
-     * @var int
+     * @var string
      */
     private $idPanier;
 
@@ -31,9 +31,9 @@ class Panier
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdPanier(): int
+    public function getIdPanier(): string
     {
         return $this->idPanier;
     }

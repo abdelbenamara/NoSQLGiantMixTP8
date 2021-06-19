@@ -3,7 +3,7 @@
 class Produit
 {
     /**
-     * @var int
+     * @var string
      */
     private $idProduit;
 
@@ -28,9 +28,9 @@ class Produit
     private $prix;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdProduit(): int
+    public function getIdProduit(): string
     {
         return $this->idProduit;
     }
