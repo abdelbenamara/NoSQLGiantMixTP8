@@ -1,23 +1,26 @@
 <?php
 
-namespace App\Entity;
-
 class Produit
 {
     /**
+     * @var string
+     */
+    private string $idProduit;
+
+    /**
      * @var int
      */
-    private $idProduit;
+    private int $qteCommandee;
 
     /**
      * @var string
      */
-    private $nom;
+    private string $nom;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdProduit(): int
+    public function getIdProduit(): string
     {
         return $this->idProduit;
     }
@@ -37,4 +40,22 @@ class Produit
     {
         $this->nom = $nom;
     }
+
+    /**
+     * @return int
+     */
+    public function getQteCommandee(): int
+    {
+        return $this->qteCommandee;
+    }
+
+    /**
+     * @param int $qteCommandee
+     */
+    public function setQteCommandee(int $qteCommandee): void
+    {
+        $this->qteCommandee = $qteCommandee;
+    }
+
+
 }

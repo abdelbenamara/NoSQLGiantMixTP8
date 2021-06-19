@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Repository;
-
-use App\Entity\Client;
+require __DIR__ . "/../Entity/Client.php";
 
 class ClientRepository
 {
     function connect()
+    {
+
+    }
+
+    function getClient(string $idClient): Client
     {
 
     }

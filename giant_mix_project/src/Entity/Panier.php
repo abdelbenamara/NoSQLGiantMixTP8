@@ -1,18 +1,27 @@
 <?php
 
-namespace App\Entity;
-
 class Panier
 {
+
+    public function __construct(string $idClient)
+    {
+        $this->idClient = $idClient;
+    }
+
     /**
-     * @var int
+     * @var string
      */
-    private $idPanier;
+    private string $idPanier;
+
+    /**
+     * @var string
+     */
+    private string $idClient;
 
     /**
      * @var array
      */
-    private $produits;
+    private array $produits;
 
     /**
      * @return array
@@ -31,10 +40,19 @@ class Panier
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdPanier(): int
+    public function getIdPanier(): string
     {
         return $this->idPanier;
     }
+
+    /**
+     * @return string
+     */
+    public function getIdClient(): string
+    {
+        return $this->idClient;
+    }
+
 }

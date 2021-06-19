@@ -1,40 +1,59 @@
 <?php
 
-namespace App\Entity;
-
 class Commande
 {
-    /**
-     * @var int
-     */
-    private $idCommande;
+    function __construct(string $idCommande, string $idClient, array $produits) {
+        $this->idCommande = $idCommande;
+        $this->idClient = $idClient;
+        $this->produits = $produits;
+    }
 
     /**
+     * @var string
+     */
+    private string $idCommande;
+
+    /**
+     * @var string
+     */
+    private string $idClient;
+
+    /** Contient l'idProduit et sa quantité
      * @var array
      */
-    private $qteProduits;
+    private array $produits;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdCommande(): int
+    public function getIdCommande(): string
     {
         return $this->idCommande;
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getDetailsProduits(): array
+    public function getIdClient(): string
     {
-        return $this->detailsProduits;
+        return $this->idClient;
     }
 
     /**
-     * @param array $detailsProduits
+     * @return array
      */
-    public function setDetailsProduits(array $detailsProduits): void
+    public function getProduits(): array
     {
-        $this->detailsProduits = $detailsProduits;
+        return $this->produits;
     }
+
+    /**
+     * @param array $produits
+     */
+    public function setProduits(array $produits): void
+    {
+        $this->produits = $produits;
+    }
+
+
 }

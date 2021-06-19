@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+require __DIR__ . "/../Entity/Panier.php";
 
 class PanierRepository
 {
@@ -9,37 +9,37 @@ class PanierRepository
 
     }
 
-    function persistPanier(int $idClient)
+    function persistPanier(string $idClient)
     {
 
     }
 
-    function getPanier(int $idClient)
+    function getPanier(string $idClient): Panier
     {
 
     }
 
-    function deletePanier(int $idClient)
+    function deletePanier(string $idClient)
     {
 
     }
 
-    function addTimePanier(int $idClient)
+    function addTimePanier(string $idClient)
     {
 
     }
 
-    function addProduit(int $idProduit, int $idClient)
+    function addProduit(string $idProduit, string $idClient)
     {
 
     }
 
-    function addQteProduit(int $qteProduit, int $idProduit, int $idClient)
+    function addQteProduit(int $qteProduit, string $idProduit, string $idClient)
     {
 
     }
 
-    function removeQteProduit(int $qteProduit, int $idProduit, int $idClient)
+    function removeQteProduit(int $qteProduit, string $idProduit, string $idClient)
     {
 
     }
