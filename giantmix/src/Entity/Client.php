@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Entity;
-
 class Client
 {
     /**
      * @var string
      */
-    private $idClient;
+    private int $idClient;
 
     /**
      * @var string
      */
     private $nom;
 
+
     /**
      * @var string
      */
     private $prenom;
+
 
     /**
      * @var string

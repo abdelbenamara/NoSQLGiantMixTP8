@@ -5,12 +5,12 @@ class Produit
     /**
      * @var string
      */
-    private $idProduit;
+    private int $idProduit;
 
     /**
      * @var string
      */
-    private $nom;
+    private string $nom;
 
     /**
      * @var string

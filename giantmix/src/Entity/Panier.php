@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Entity;
-
 class Panier
 {
     /**
@@ -12,7 +10,7 @@ class Panier
     /**
      * @var array
      */
-    private $produits;
+    private array $produits;
 
     /**
      * @return array

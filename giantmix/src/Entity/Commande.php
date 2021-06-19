@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Entity;
-
 class Commande
 {
     /**
      * @var string
      */
-    private $idCommande;
+    private int $idCommande;
 
     /**
      * @var array
      */
-    private $qteProduits;
+    private array $qteProduits;
 
     /**
      * @return string
