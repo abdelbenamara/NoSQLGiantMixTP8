@@ -2,7 +2,7 @@
 
 class ClientRepository
 {
-    function connect()
+    public function __construct()
     {
 
     }

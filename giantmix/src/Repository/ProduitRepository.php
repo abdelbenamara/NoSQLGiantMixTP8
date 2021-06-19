@@ -1,6 +1,7 @@
 <?php
 require '../../vendor/autoload.php';
-require  '../Entity/Produit.php';
+require '../Entity/Produit.php';
+
 use Elasticsearch\ClientBuilder;
 
 class ProduitRepository
@@ -10,7 +11,7 @@ class ProduitRepository
 
     private $client;
 
-    function connect()
+    public function __construct()
     {
         $this->client = ClientBuilder::create()
             ->setHosts($this->hosts)
@@ -21,11 +22,11 @@ class ProduitRepository
     {
         $params = [
             'index' => 'product',
-            'body'  => [
+            'body' => [
                 'query' => [
                     'multi_match' => [
                         "query" => $motClef,
-                        "fields" => ["Marque","nom","type"],
+                        "fields" => ["Marque", "nom", "type"],
                         "fuzziness" => "AUTO"
                     ]
                 ]
@@ -33,8 +34,8 @@ class ProduitRepository
         ];
 
         $produits = array();
-        $result =$this->client->search($params);
-        foreach ($result['hits']['hits'] as $pResult){
+        $result = $this->client->search($params);
+        foreach ($result['hits']['hits'] as $pResult) {
             $p = new Produit();
             $p->setNom($pResult["_source"]["nom"]);
             $p->setType($pResult["_source"]["type"]);
@@ -52,7 +53,7 @@ class ProduitRepository
     {
         $params = [
             'index' => 'product',
-            'id'    => $idProduit
+            'id' => $idProduit
         ];
         return $this->client->get($params);
     }

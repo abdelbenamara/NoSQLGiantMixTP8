@@ -12,7 +12,7 @@ class PanierRepository
      */
     public Predis\Client $redis;
 
-    function connect()
+    public function __construct()
     {
         try {
             $this->redis = new Predis\Client(array(
@@ -25,48 +25,48 @@ class PanierRepository
         }
     }
 
-    function persistPanier($idClient)
+    function persistPanier(string $idClient)
     {
         $this->redis->hset($idClient, "init", 0);
         $this->addTimePanier($idClient);
     }
 
-    function getPanier($idClient): Panier
+    function getPanier(string $idClient): Panier
     {
         $redisProduits = $this->redis->hgetall($idClient);
-        $panier = new Panier();
+        $panier = new Panier($idClient);
         $panier->setProduits($redisProduits);
         return $panier;
     }
 
-    function deletePanier($idClient)
+    function deletePanier(string $idClient)
     {
         $this->redis->del($idClient);
     }
 
-    function addTimePanier($idClient)
+    function addTimePanier(string $idClient)
     {
         $this->redis->expire($idClient, 300);
     }
 
-    function addProduit($idProduit, $idClient)
+    function addProduit(string $idProduit, string $idClient)
     {
-        $this->persistProduit($idClient, $idProduit, 1);
+        $this->persistProduitInPanier($idClient, $idProduit, 1);
     }
 
-    function addQteProduit($qteProduit, $idProduit, $idClient)
+    function addQteProduit($qteProduit, string $idProduit, string $idClient)
     {
         $newQteProduit = $this->redis->hget($idClient, $idProduit) + $qteProduit;
-        $this->persistProduit($idClient, $idProduit, $newQteProduit);
+        $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
     }
 
-    function removeQteProduit($qteProduit, $idProduit, $idClient)
+    function removeQteProduit($qteProduit, string $idProduit, string $idClient)
     {
         $newQteProduit = $this->redis->hget($idClient, $idProduit) - $qteProduit;
-        $this->persistProduit($idClient, $idProduit, $newQteProduit);
+        $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
     }
 
-    private function persistProduit($idClient, $idProduit, $qteProduit)
+    private function persistProduitInPanier(string $idClient, string $idProduit, $qteProduit)
     {
         $this->redis->hset($idClient, $idProduit, $qteProduit);
     }

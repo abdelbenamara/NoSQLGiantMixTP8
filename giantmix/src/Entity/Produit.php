@@ -5,27 +5,32 @@ class Produit
     /**
      * @var string
      */
-    private int $idProduit;
+    private string $idProduit = "";
 
     /**
      * @var string
      */
-    private string $nom;
+    private string $nom = "";
 
     /**
      * @var string
      */
-    private $type;
+    private string $type = "";
 
     /**
      * @var string
      */
-    private $marque;
+    private string $marque = "";
 
     /**
-     * @var double
+     * @var float
      */
-    private $prix;
+    private float $prix = 0.0;
+
+    /**
+     * @var int
+     */
+    private int $qteCommandee = 0;
 
     /**
      * @return string
@@ -38,7 +43,7 @@ class Produit
     /**
      * @param string $idProduit
      */
-    public function setIdProduit($idProduit): void
+    public function setIdProduit(string $idProduit): void
     {
         $this->idProduit = $idProduit;
     }
@@ -107,5 +112,25 @@ class Produit
         $this->prix = $prix;
     }
 
+    /**
+     * @return int
+     */
+    public function getQteCommandee(): int
+    {
+        return $this->qteCommandee;
+    }
 
+    /**
+     * @param int $qteCommandee
+     */
+    public function setQteCommandee(int $qteCommandee): void
+    {
+        $this->qteCommandee = $qteCommandee;
+    }
+
+    public function toArray(): array
+    {
+        return array("idProduit" => $this->idProduit, "marque" => $this->marque, "nom" => $this->nom,
+            "prix" => $this->prix, "qteCommandee" => $this->qteCommandee);
+    }
 }

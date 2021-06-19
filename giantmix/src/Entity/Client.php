@@ -5,29 +5,29 @@ class Client
     /**
      * @var string
      */
-    private int $idClient;
+    private string $idClient;
 
     /**
      * @var string
      */
-    private $nom;
-
-
-    /**
-     * @var string
-     */
-    private $prenom;
+    private string $nom;
 
 
     /**
      * @var string
      */
-    private $password;
+    private string $prenom;
+
 
     /**
      * @var string
      */
-    private $mail;
+    private string $password;
+
+    /**
+     * @var string
+     */
+    private string $mail;
 
 
     /**
