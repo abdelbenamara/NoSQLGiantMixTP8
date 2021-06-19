@@ -36,6 +36,14 @@ class Produit
     }
 
     /**
+     * @param string $idProduit
+     */
+    public function setIdProduit($idProduit): void
+    {
+        $this->idProduit = $idProduit;
+    }
+
+    /**
      * @return string
      */
     public function getNom(): string

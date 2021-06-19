@@ -40,6 +40,7 @@ class ProduitRepository
             $p->setType($pResult["_source"]["type"]);
             $p->setMarque($pResult["_source"]["Marque"]);
             $p->setPrix($pResult["_source"]["prix"]);
+            $p->setIdProduit($pResult["_id"]);
             array_push($produits, $p);
         }
 
