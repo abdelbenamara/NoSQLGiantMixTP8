@@ -3,57 +3,103 @@
 class Client
 {
     /**
-     * @var int
+     * @var string
      */
     private int $idClient;
 
     /**
-     * @var Panier
+     * @var string
      */
-    private Panier $panier;
+    private $nom;
+
 
     /**
-     * @var array
+     * @var string
      */
-    private array $commandes;
+    private $prenom;
+
 
     /**
-     * @return int
+     * @var string
      */
-    public function getIdClient(): int
+    private $password;
+
+    /**
+     * @var string
+     */
+    private $mail;
+
+
+    /**
+     * @return string
+     */
+    public function getIdClient(): string
     {
         return $this->idClient;
     }
 
     /**
-     * @return Panier
+     * @return string
      */
-    public function getPanier(): Panier
+    public function getPrenom(): string
     {
-        return $this->panier;
+        return $this->prenom;
     }
 
     /**
-     * @param Panier $panier
+     * @param string $username
      */
-    public function setPanier(Panier $panier): void
+    public function setPrenom(string $prenom): void
     {
-        $this->panier = $panier;
+        $this->prenom = $prenom;
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getCommandes(): array
+    public function getPassword(): string
     {
-        return $this->commandes;
+        return $this->password;
     }
 
     /**
-     * @param array $commandes
+     * @param string $password
      */
-    public function setCommandes(array $commandes): void
+    public function setPassword(string $password): void
     {
-        $this->commandes = $commandes;
+        $this->password = $password;
     }
+
+    /**
+     * @return string
+     */
+    public function getNom(): string
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom(string $nom): void
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMail(): string
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param string $mail
+     */
+    public function setMail(string $mail): void
+    {
+        $this->mail = $mail;
+    }
+
 }

@@ -7,13 +7,15 @@ class ClientRepository
 
     }
 
-    function checkUpLogin(string $username, string $password)
+    function checkUpLogin(string $username, string $password): int
     {
-
+        //TODO : return l'id client correspondant ou null
+        return 1;
     }
 
     function persistClient(Client $client)
     {
+        //TODO
 
     }
 }

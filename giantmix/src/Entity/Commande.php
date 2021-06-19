@@ -3,7 +3,7 @@
 class Commande
 {
     /**
-     * @var int
+     * @var string
      */
     private int $idCommande;
 
@@ -13,9 +13,9 @@ class Commande
     private array $qteProduits;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getIdCommande(): int
+    public function getIdCommande(): string
     {
         return $this->idCommande;
     }
