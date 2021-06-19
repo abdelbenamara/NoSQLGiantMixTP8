@@ -2,15 +2,26 @@
 
 class Commande
 {
+    function __construct(string $idCommande, string $idClient, array $produits) {
+        $this->idCommande = $idCommande;
+        $this->idClient = $idClient;
+        $this->produits = $produits;
+    }
+
     /**
      * @var string
      */
-    private int $idCommande;
+    private string $idCommande;
 
     /**
+     * @var string
+     */
+    private string $idClient;
+
+    /** Contient l'idProduit et sa quantité
      * @var array
      */
-    private array $qteProduits;
+    private array $produits;
 
     /**
      * @return string
@@ -21,18 +32,28 @@ class Commande
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getDetailsProduits(): array
+    public function getIdClient(): string
     {
-        return $this->detailsProduits;
+        return $this->idClient;
     }
 
     /**
-     * @param array $detailsProduits
+     * @return array
      */
-    public function setDetailsProduits(array $detailsProduits): void
+    public function getProduits(): array
     {
-        $this->detailsProduits = $detailsProduits;
+        return $this->produits;
     }
+
+    /**
+     * @param array $produits
+     */
+    public function setProduits(array $produits): void
+    {
+        $this->produits = $produits;
+    }
+
+
 }
