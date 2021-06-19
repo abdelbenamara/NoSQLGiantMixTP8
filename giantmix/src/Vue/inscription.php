@@ -3,7 +3,7 @@ session_start();
 require "../Controller/ClientController.php";
 
 if (isset($_POST["password"])) {
-
+    createClient($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"]);
     //TODO Redirect to connection
 }
 

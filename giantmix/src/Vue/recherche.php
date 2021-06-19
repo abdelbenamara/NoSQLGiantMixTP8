@@ -33,7 +33,8 @@ if(isset($_GET["q"])){
         echo "<tr><td>".$p->getNom()."</td>";
         echo "<td>".$p->getType()."</td>";
         echo "<td>".$p->getMarque()."</td>";
-        echo "<td>".$p->getPrix()."€</td></tr>";
+        echo "<td>".$p->getPrix()."€</td>";
+        echo "<td hidden>".$p->getIdProduit()."</td></tr>";
     }
     ?>
 <!---
