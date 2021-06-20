@@ -1,10 +1,12 @@
 <?php
 
 class ClientRepository
+
 {
+
     public function __construct()
     {
-
+        //TODO connection
     }
 
     function checkUpLogin(string $username, string $password): int

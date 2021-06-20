@@ -1,6 +1,14 @@
 <?php
-
+require_once "../Controller/PanierController.php";
+require_once "../Controller/CommandeController.php";
 session_start();
+
+if (isset($_GET["commandToPanier"])){
+    addCommandeFromPanier();
+}
+
+$commandes = getAllCommande()
+
 ?>
 
 <!DOCTYPE html>
@@ -12,46 +20,32 @@ session_start();
 <body>
 
 <table>
-  <tr>
-    <td>Numéro de commande</td>
-    <td>Date de la commande</td>
-    <td>Total (euros)</td>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>12/04/2010</td>
-    <td>1479.89</td>
-    <td><button type="submit">Afficher les détails de la commande</button></td>
-  </tr>
-
-  <tr>
-    <td>2</td>
-    <td>14/05/2010</td>
-    <td>654.20</td>
-    <td><button type="submit">Afficher les détails de la commande</button></td>
-  </tr>
-</table>
-
-
-<table>
-  <tr>
-    <td>idProduit</td>
-    <td>Produit</td>
-    <td>Quantité</td>
-    <td>Prix (euros)</td>
-  </tr>
-  <tr>
-    <td>67</td>
-    <td>Asus Zenbook</td>
-    <td>1</td>
-    <td>799.90</td>
-  </tr>
-  <tr>
-    <td>42</td>
-    <td>Lenovo Yoga Slim 7</td>
-    <td>1</td>
-    <td>679.99</td>
-  </tr>
+    <tr>
+        <td>Numéro de commande</td>
+        <td>Date de la commande</td>
+        <td>Total (euros)</td>
+    </tr>
+    <?php foreach ($commandes as $cmd){
+        echo "<tr><td>".$cmd->getIdClient()."</td>";
+        echo "<td>".$cmd->getDateCommande()."</td>";
+        echo "<td>".CalculateTotal($cmd)."</td>";
+        ?>
+        <td><button type="submit">Afficher les détails de la commande</button></td>
+        <div>
+            <table>
+                <tr>
+                    <td>Produit</td>
+                    <td>Quantité</td>
+                    <td>Prix (euros)</td>
+                </tr>
+            <?php foreach ($cmd->getDetailsProduits() as $qte => $produit){
+                echo "<tr><td>".$produit->getNom()."</td>";
+                echo "<td>".$qte."</td>";
+                echo "<td>".$produit->getPrix()."</td></tr>";
+            }?>
+            </table>
+        </div>
+    <?php } ?>
 </table>
 
 

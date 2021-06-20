@@ -1,6 +1,6 @@
 <?php
 
-require "../Repository/ProduitRepository.php";
+require_once "../Repository/ProduitRepository.php";
 
 function search_product($motclef): array
 {

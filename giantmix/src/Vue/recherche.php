@@ -1,6 +1,7 @@
 <?php
 
 require "../Controller/RechercheController.php";
+require "../Controller/PanierController.php";
 
 $product = array();
 
@@ -8,6 +9,9 @@ if(isset($_GET["q"])){
     $product = search_product($_GET["q"]);
 }
 
+if(isset($_GET["idProduit"])){
+    addProduit($_GET["idProduit"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,34 +33,18 @@ if(isset($_GET["q"])){
 <table>
     <?php
     foreach ($product as $p){
-
+        echo "<form method='get' action='recherche.php'>";
         echo "<tr><td>".$p->getNom()."</td>";
         echo "<td>".$p->getType()."</td>";
         echo "<td>".$p->getMarque()."</td>";
         echo "<td>".$p->getPrix()."€</td>";
-        echo "<td hidden>".$p->getIdProduit()."</td></tr>";
+        echo "<td><input type='hidden' name='idProduit' value='".$p->getIdProduit()."'></input></td>";
+        echo "<td><input type='hidden' name='q' value='".$_GET["q"]."'></input></td>";
+        echo "<td><button type='submit'> Ajouter au panier</button></td>";
+        echo "</form>";
     }
     ?>
-<!---
-    <tr>
-        <td>David</td>
-        <td>33 ans</td>
-        <td>Espagne</td>
-        <td><button type="submit">Ajouter au panier</button></td>
-    </tr>
-    <tr>
-        <td>Abdel</td>
-        <td>26 ans</td>
-        <td>États-Unis</td>
-        <td><button type="submit">Ajouter au panier</button></td>
-    </tr>
-    <tr>
-        <td>Mathieu</td>
-        <td>20 ans</td>
-        <td>Allemagne</td>
-        <td><button type="submit">Ajouter au panier</button></td>
-    </tr>
- -->
+
 </table>
 
 

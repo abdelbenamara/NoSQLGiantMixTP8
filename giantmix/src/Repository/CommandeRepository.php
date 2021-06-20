@@ -29,6 +29,7 @@ class CommandeRepository
             $this->db->createCollection($col_commandes);
         }
         $this->collection = $this->db->selectCollection($col_commandes);
+        var_dump();
     }
 
     function panierToCommande(string $idClient): Commande

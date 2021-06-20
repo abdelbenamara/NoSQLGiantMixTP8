@@ -1,5 +1,18 @@
 <?php
+
+require_once "../Controller/PanierController.php";
 session_start();
+
+if (isset($_GET["idProduit"])){
+    if ($_GET["do"] == "less"){
+        removeProduit($_GET["idProduit"]);
+    }elseif ($_GET["do"] == "plus"){
+        addProduit($_GET["idProduit"]);
+    }
+}
+
+$panier = getPanierClient();
+
 ?>
 
 <!DOCTYPE html>
@@ -14,31 +27,36 @@ session_start();
 
 <table>
   <tr>
-    <td>idProduit</td>
     <td>Produit</td>
     <td>Quantité</td>
     <td>Prix (euros)</td>
   </tr>
-  <tr>
-    <td>67</td>
-    <td>Asus Zenbook</td>
-    <td>1</td>
-    <td>799.90</td>
-    <td><button type="submit">+</button></td>
-    <td><button type="submit">-</button></td>
-  </tr>
-  <tr>
-    <td>42</td>
-    <td>Lenovo Yoga Slim 7</td>
-    <td>1</td>
-    <td>679.99</td>
-    <td><button type="submit">+</button></td>
-    <td><button type="submit">-</button></td>
-  </tr>
+    <?php
+    $repoProduit = new ProduitRepository();
+    foreach ($panier->getProduits() as $idProduit => $qte) {
+        $produit = $repoProduit->getProduit($idProduit);
+        echo "<tr><td>".$produit->getNom()."</td>";
+        echo "<td>".$qte."</td>";
+        echo "<td>".$produit->getPrix()."</td>";
+        echo "<td><form action='panier.php' method='get'><button type='submit'>+</button>
+              <input type='hidden' name='idProduit' value='".$idProduit."'> 
+              <input type='hidden' name='do' value='plus'> 
+              </form></td>
+            ";
+        echo "<td><form action='panier.php' method='get'><button type='submit'>-</button>
+              <input type='hidden' name='idProduit' value='".$idProduit."'> 
+              <input type='hidden' name='do' value='less'> 
+              </form></td></tr>
+            ";
+    }
+    ?>
 </table>
 
 <div class="submit-form">
-  <button type="submit">Passer la commande</button>
+    <form action="commande.php" method="get">
+        <button type="submit">Passer la commande</button>
+        <input type="hidden" name="commandToPanier" value="1">
+    </form>
 </div>
 
 </body>

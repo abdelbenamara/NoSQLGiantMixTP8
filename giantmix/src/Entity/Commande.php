@@ -6,12 +6,18 @@ class Commande
     {
         $this->idClient = $idClient;
         $this->detailsProduits = $detailsProduits;
+        $this->dateCommande = date("Y-m-d H:i:s");
     }
 
     /**
      * @var string
      */
     private string $idClient;
+
+    /**
+     * @var string
+     */
+    private string $dateCommande;
 
     /**
      * @var array|object
@@ -41,6 +47,24 @@ class Commande
     {
         return $this->idClient;
     }
+
+    /**
+     * @return string
+     */
+    public function getDateCommande()
+    {
+        return $this->dateCommande;
+    }
+
+    /**
+     * @param string $dateCommande
+     */
+    public function setDateCommande($dateCommande): void
+    {
+        $this->dateCommande = $dateCommande;
+    }
+
+
 
 
 }
