@@ -1,8 +1,7 @@
 <?php
-require '../../vendor/autoload.php';
-require '../Entity/Produit.php';
 
-use Elasticsearch\ClientBuilder;
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../Entity/Produit.php';
 
 class ProduitRepository
 {
@@ -13,7 +12,7 @@ class ProduitRepository
 
     public function __construct()
     {
-        $this->client = ClientBuilder::create()
+        $this->client = Elasticsearch\ClientBuilder::create()
             ->setHosts($this->hosts)
             ->build();
     }

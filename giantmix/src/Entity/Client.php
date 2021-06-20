@@ -39,6 +39,14 @@ class Client
     }
 
     /**
+     * @param string $idClient
+     */
+    public function setIdClient(string $idClient): void
+    {
+        $this->idClient = $idClient;
+    }
+
+    /**
      * @return string
      */
     public function getPrenom(): string
@@ -101,5 +109,4 @@ class Client
     {
         $this->mail = $mail;
     }
-
 }

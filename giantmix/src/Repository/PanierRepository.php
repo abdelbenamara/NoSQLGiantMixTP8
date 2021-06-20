@@ -1,7 +1,8 @@
 <?php
 
-require __DIR__ . "/../../vendor/predis/predis/autoload.php";
-require __DIR__ . "/../Entity/Panier.php";
+require_once __DIR__ . "/../../vendor/predis/predis/autoload.php";
+require_once __DIR__ . "/../Entity/Panier.php";
+require_once __DIR__ . "/../Entity/Commande.php";
 
 Predis\Autoloader::register();
 
@@ -10,7 +11,7 @@ class PanierRepository
     /**
      * @var Predis\Client
      */
-    public Predis\Client $redis;
+    private Predis\Client $redis;
 
     public function __construct()
     {
@@ -25,7 +26,7 @@ class PanierRepository
         }
     }
 
-    function persistPanier(string $idClient)
+    function createPanier(string $idClient)
     {
         $this->redis->hset($idClient, "init", 0);
         $this->addTimePanier($idClient);
@@ -33,6 +34,7 @@ class PanierRepository
 
     function getPanier(string $idClient): Panier
     {
+        $this->createPanierIfNotExists($idClient);
         $redisProduits = $this->redis->hgetall($idClient);
         $panier = new Panier($idClient);
         $panier->setProduits($redisProduits);
@@ -44,30 +46,52 @@ class PanierRepository
         $this->redis->del($idClient);
     }
 
-    function addTimePanier(string $idClient)
-    {
-        $this->redis->expire($idClient, 300);
-    }
-
     function addProduit(string $idProduit, string $idClient)
     {
+        $this->createPanierIfNotExists($idClient);
         $this->persistProduitInPanier($idClient, $idProduit, 1);
     }
 
     function addQteProduit($qteProduit, string $idProduit, string $idClient)
     {
+        $this->createPanierIfNotExists($idClient);
         $newQteProduit = $this->redis->hget($idClient, $idProduit) + $qteProduit;
         $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
     }
 
     function removeQteProduit($qteProduit, string $idProduit, string $idClient)
     {
-        $newQteProduit = $this->redis->hget($idClient, $idProduit) - $qteProduit;
-        $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
+        if ($this->redis->exists($idClient)) {
+            $newQteProduit = $this->redis->hget($idClient, $idProduit) - $qteProduit;
+            $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
+        } else {
+            $this->createPanier($idClient);
+        }
+    }
+
+    function panierToCommande(string $idClient): Commande
+    {
+        $this->createPanierIfNotExists($idClient);
+        $panier = $this->getPanier($idClient);
+        return new Commande($idClient, $panier->getProduits());
+    }
+
+    private function addTimePanier(string $idClient)
+    {
+        $this->redis->expire($idClient, 300);
+    }
+
+    private function createPanierIfNotExists(string $idClient)
+    {
+        if (!$this->redis->exists($idClient)) {
+            $this->createPanier($idClient);
+        }
     }
 
     private function persistProduitInPanier(string $idClient, string $idProduit, $qteProduit)
     {
+        $this->createPanierIfNotExists($idClient);
         $this->redis->hset($idClient, $idProduit, $qteProduit);
+        $this->addTimePanier($idClient);
     }
 }

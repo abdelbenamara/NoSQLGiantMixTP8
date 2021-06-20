@@ -41,6 +41,4 @@ class Commande
     {
         return $this->idClient;
     }
-
-
 }
