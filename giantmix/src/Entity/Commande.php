@@ -64,7 +64,4 @@ class Commande
         $this->dateCommande = $dateCommande;
     }
 
-
-
-
 }
