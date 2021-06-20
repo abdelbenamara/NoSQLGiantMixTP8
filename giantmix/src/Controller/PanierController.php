@@ -1,22 +1,28 @@
 <?php
 
-require_once "../Repository/PanierRepository.php";
+require_once __DIR__ . "/../Repository/PanierRepository.php";
 
-function addProduit($idProduit){
-//TODO
-}
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
-function removeProduit($idProduit){
-//TODO
-}
-
-function addCommandeFromPanier(){
-//TODO
-}
-
-function getPanierClient():Panier{
+function addProduit($idProduit)
+{
     $panierRepo = new PanierRepository();
-   return $panierRepo->getPanier($_SESSION["clientID"]);
+    $panierRepo->addProduit($idProduit, $_SESSION["clientID"]);
+    // var_dump($_SESSION["clientID"]);
 }
 
-?>
+function removeProduit($idProduit)
+{
+//TODO
+}
+
+function addCommandeFromPanier()
+{
+//TODO
+}
+
+function getPanierClient(): Panier
+{
+    $panierRepo = new PanierRepository();
+    return $panierRepo->getPanier($_SESSION["clientID"]);
+}

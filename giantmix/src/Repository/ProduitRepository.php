@@ -35,12 +35,7 @@ class ProduitRepository
         $produits = array();
         $result = $this->client->search($params);
         foreach ($result['hits']['hits'] as $pResult) {
-            $p = new Produit();
-            $p->setNom($pResult["_source"]["nom"]);
-            $p->setType($pResult["_source"]["type"]);
-            $p->setMarque($pResult["_source"]["Marque"]);
-            $p->setPrix($pResult["_source"]["prix"]);
-            $p->setIdProduit($pResult["_id"]);
+            $p = $this->mapProduitToObject($pResult);
             array_push($produits, $p);
         }
 
@@ -48,12 +43,23 @@ class ProduitRepository
         return $produits;
     }
 
-    function getProduit($idProduit)
+    function getProduit($idProduit): Produit
     {
         $params = [
             'index' => 'product',
             'id' => $idProduit
         ];
-        return $this->client->get($params);
+        return $this->mapProduitToObject($this->client->get($params));
+    }
+
+    private function mapProduitToObject(array $pResult): Produit
+    {
+        $p = new Produit();
+        $p->setIdProduit($pResult["_id"]);
+        $p->setNom($pResult["_source"]["nom"]);
+        $p->setType($pResult["_source"]["type"]);
+        $p->setMarque($pResult["_source"]["Marque"]);
+        $p->setPrix($pResult["_source"]["prix"]);
+        return $p;
     }
 }

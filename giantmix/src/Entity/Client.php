@@ -10,24 +10,22 @@ class Client
     /**
      * @var string
      */
-    private string $nom;
-
-
-    /**
-     * @var string
-     */
     private string $prenom;
 
-
     /**
      * @var string
      */
-    private string $password;
+    private string $nom;
 
     /**
      * @var string
      */
     private string $mail;
+
+    /**
+     * @var string
+     */
+    private string $password;
 
 
     /**
@@ -55,27 +53,11 @@ class Client
     }
 
     /**
-     * @param string $username
+     * @param string $prenom
      */
     public function setPrenom(string $prenom): void
     {
         $this->prenom = $prenom;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * @param string $password
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
     }
 
     /**
@@ -108,5 +90,21 @@ class Client
     public function setMail(string $mail): void
     {
         $this->mail = $mail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
     }
 }

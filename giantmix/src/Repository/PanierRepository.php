@@ -49,7 +49,14 @@ class PanierRepository
     function addProduit(string $idProduit, string $idClient)
     {
         $this->createPanierIfNotExists($idClient);
-        $this->persistProduitInPanier($idClient, $idProduit, 1);
+        // var_dump($this->redis->exists($idClient . " " . $idProduit));
+        if ($this->redis->exists($idClient . " " . $idProduit)) {
+            // echo "product exists";
+            $this->addQteProduit(1, $idProduit, $idClient);
+        } else {
+            // echo "product does not exist";
+            $this->persistProduitInPanier($idClient, $idProduit, 1);
+        }
     }
 
     function addQteProduit($qteProduit, string $idProduit, string $idClient)

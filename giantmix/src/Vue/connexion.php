@@ -1,14 +1,18 @@
 <?php
-session_start();
-require "../Controller/ClientController.php";
-if(isset($_post["email"])){
-    if(connectClient($_post["email"], $_post["password"])){
-      //TODO redirect recherche
-    }else{
+
+require_once __DIR__ . "/../Controller/ClientController.php";
+
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+
+if (isset($_POST["email"])) {
+    if (connectClient($_POST["email"], $_POST["password"])) {
+        header('Location: recherche.php');
+    } else {
         echo "Erreur de connexion";
     }
+} else if (isset($_SESSION["clientID"])) {
+    header('Location: recherche.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +20,7 @@ if(isset($_post["email"])){
 <head>
     <meta charset="UTF-8">
     <title>Page de connexion</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 <h2>Déjà client ? Enregistrez-vous !</h2>

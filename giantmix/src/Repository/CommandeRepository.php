@@ -39,14 +39,6 @@ class CommandeRepository
         }
     }
 
-    function panierToCommande(string $idClient): Commande
-    {
-        $panierRepo = new PanierRepository();
-        $panier = $panierRepo->getPanier($idClient);
-        return new Commande($idClient, $panier->getProduits());
-
-    }
-
     function persistCommande(Commande $commande): void
     {
         $this->mongodb->selectDatabase($this->database)->selectCollection($this->commandes)->insertOne(array(
@@ -57,13 +49,13 @@ class CommandeRepository
 
     function getAllCommandesByClient(int $idClient): array
     {
-        $cmds = array();
+        $documents = array();
         $cursor = $this->mongodb->selectDatabase($this->database)->selectCollection($this->commandes)->find();
-        foreach ($cursor as $document) {
-            if ($document["idClient"] == $idClient) {
-                array_push($cmds, new Commande($document["idClient"], $document["produits"]));
+        foreach ($cursor as $doc) {
+            if ($doc["idClient"] == $idClient) {
+                array_push($documents, new Commande($doc["idClient"], $doc["produits"]));
             }
         }
-        return $cmds;
+        return $documents;
     }
 }

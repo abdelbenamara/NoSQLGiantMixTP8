@@ -1,12 +1,15 @@
 <?php
-session_start();
-require "../Controller/ClientController.php";
+
+require_once __DIR__ . "/../Controller/ClientController.php";
+
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
 if (isset($_POST["password"])) {
     createClient($_POST["nom"], $_POST["prenom"], $_POST["email"], $_POST["password"]);
-    //TODO Redirect to connection
+    header('Location: connexion.php');
+} else if (isset($_SESSION["clientID"])) {
+    header('Location: connexion.php');
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -21,13 +24,13 @@ if (isset($_POST["password"])) {
 <form method="post" action="inscription.php">
 
     <div class="inscription-form">
-        <input type="text" name="nom" id="nom" placeholder=" ">
-        <label for="nom">Nom</label>
+        <input type="text" name="prenom" id="prenom" placeholder=" ">
+        <label for="prenom">Prénom</label>
     </div>
 
     <div class="inscription-form">
-        <input type="text" name="prenom" id="prenom" placeholder=" ">
-        <label for="prenom">Prénom</label>
+        <input type="text" name="nom" id="nom" placeholder=" ">
+        <label for="nom">Nom</label>
     </div>
 
     <div class="inscription-form">
