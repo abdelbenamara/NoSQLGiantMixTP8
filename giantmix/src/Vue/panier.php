@@ -5,6 +5,9 @@ require_once __DIR__ . "/../Repository/ProduitRepository.php";
 
 if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
+if (!isset($_SESSION["clientID"])) {
+    header('Location: accueil.php');
+}
 if (isset($_GET["idProduit"])) {
     if ($_GET["do"] == "less") {
         removeProduit($_GET["idProduit"]);
@@ -24,7 +27,14 @@ $panier = getPanierClient();
 </head>
 <body>
 
-<h2>Votre panier</h2>
+<div>
+    <h2>Votre panier</h2>
+
+    <form action="accueil.php" method="post">
+        <input type="hidden" name="disconnect">
+        <button type="submit">Se déconnecter</button>
+    </form>
+</div>
 
 <table>
     <tr>
@@ -60,6 +70,22 @@ $panier = getPanierClient();
     <form action="commande.php" method="get">
         <button type="submit">Passer la commande</button>
         <input type="hidden" name="commandToPanier" value="1">
+    </form>
+</div>
+
+<div>
+    <a href="commande.php">
+        <button>Vos commandes</button>
+    </a>
+    <a href="recherche.php">
+        <button>Nos produits</button>
+    </a>
+</div>
+
+<div>
+    <form action="accueil.php" method="post">
+        <input type="hidden" name="disconnect">
+        <button type="submit">Se déconnecter</button>
     </form>
 </div>
 

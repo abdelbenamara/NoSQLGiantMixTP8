@@ -30,13 +30,27 @@ class ProduitRepository
                 'query' => [
                     'multi_match' => [
                         "query" => $motClef,
-                        "fields" => ["Marque", "nom", "type"],
+                        "fields" => ["Marque", "nom", "type", 'prix'],
                         "fuzziness" => "AUTO"
                     ]
                 ]
             ]
         ];
 
+        $produits = array();
+        $result = $this->client->search($params);
+        foreach ($result['hits']['hits'] as $pResult) {
+            $p = $this->mapProduitToObject($pResult);
+            array_push($produits, $p);
+        }
+        return $produits;
+    }
+
+    function searchAllProduits(): array
+    {
+        $params = [
+            'index' => 'product'
+        ];
         $produits = array();
         $result = $this->client->search($params);
         foreach ($result['hits']['hits'] as $pResult) {

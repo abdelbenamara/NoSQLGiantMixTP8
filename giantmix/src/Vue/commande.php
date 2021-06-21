@@ -5,6 +5,9 @@ require_once __DIR__ . "/../Controller/CommandeController.php";
 
 if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
+if (!isset($_SESSION["clientID"])) {
+    header('Location: accueil.php');
+}
 if (isset($_GET["commandToPanier"])) {
     addCommandeFromPanier();
 }
@@ -22,6 +25,15 @@ $commandes = getAllCommande()
     <title>Commande</title>
 </head>
 <body>
+
+<div>
+    <h2>Vos commandes</h2>
+
+    <form action="accueil.php" method="post">
+        <input type="hidden" name="disconnect">
+        <button type="submit">Se déconnecter</button>
+    </form>
+</div>
 
 <table>
     <tr>
@@ -73,6 +85,22 @@ $commandes = getAllCommande()
         }
     } ?>
 </table>
+
+<div>
+    <a href="recherche.php">
+        <button>Nos produits</button>
+    </a>
+    <a href="panier.php">
+        <button>Votre panier</button>
+    </a>
+</div>
+
+<div>
+    <form action="accueil.php" method="post">
+        <input type="hidden" name="disconnect">
+        <button type="submit">Se déconnecter</button>
+    </form>
+</div>
 
 </body>
 </html>

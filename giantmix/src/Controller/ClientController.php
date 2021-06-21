@@ -17,7 +17,7 @@ function createClient($nom, $prenom, $mail, $password)
     $repo->persistClient($client);
 }
 
-function connectClient($mail, $password)
+function connectClient($mail, $password): bool
 {
     if (session_status() !== PHP_SESSION_ACTIVE) session_start();
     $repo = new ClientRepository();
