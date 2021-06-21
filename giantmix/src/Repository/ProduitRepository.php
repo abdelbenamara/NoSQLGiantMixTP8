@@ -5,10 +5,15 @@ require_once __DIR__ . '/../Entity/Produit.php';
 
 class ProduitRepository
 {
+    /**
+     * @var string[]
+     */
+    private array $hosts = ['http://localhost:9200'];
 
-    private $hosts = ['http://localhost:9200'];
-
-    private $client;
+    /**
+     * @var Elasticsearch\Client
+     */
+    private Elasticsearch\Client $client;
 
     public function __construct()
     {
@@ -17,7 +22,7 @@ class ProduitRepository
             ->build();
     }
 
-    function searchProduit(string $motClef)
+    function searchProduit(string $motClef): array
     {
         $params = [
             'index' => 'product',
@@ -38,8 +43,6 @@ class ProduitRepository
             $p = $this->mapProduitToObject($pResult);
             array_push($produits, $p);
         }
-
-
         return $produits;
     }
 

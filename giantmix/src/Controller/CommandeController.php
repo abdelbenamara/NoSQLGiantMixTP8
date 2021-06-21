@@ -7,19 +7,26 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
 function getAllCommande(): array
 {
-    $repoCommande = new CommandeRepository();
-    return $repoCommande->getAllCommandesByClient($_SESSION["ClientID"]);
+    $commandeRepo = new CommandeRepository();
+    return $commandeRepo->getAllCommandesByClient($_SESSION["clientID"]);
 }
 
-function CalculateTotal(Commande $cmd): float
+function calculateTotalOfCommande(Commande $cmd): float
 {
     $total = 0.0;
-    $repoProduit = new ProduitRepository();
-    foreach($cmd->getDetailsProduits() as $dtlsProduit) {
-        $idProduit = $dtlsProduit[0];
-        $qteProduit = $dtlsProduit[1];
-        $produit = $repoProduit->getProduit($idProduit);
-        $total += $produit->getPrix()*$qteProduit;
+    $produitRepo = new ProduitRepository();
+    foreach ($cmd->getDetailsProduits() as $idProduit => $qte) {
+        if ($idProduit == "init") {
+            continue;
+        }
+        $produit = $produitRepo->getProduit($idProduit);
+        $total += $produit->getPrix() * $qte;
     }
     return $total;
+}
+
+function getObjectFromIdProduit(string $idProduit): Produit
+{
+    $produitRepo = new ProduitRepository();
+    return $produitRepo->getProduit($idProduit);
 }

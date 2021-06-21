@@ -31,3 +31,5 @@
 //$commande_repo->persistCommande($commande1);
 //
 //var_dump($commande_repo->getAllCommandesByClient($client1->getIdClient()));
+
+header('Location: src/Vue/inscription.php');

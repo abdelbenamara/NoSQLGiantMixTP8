@@ -49,12 +49,9 @@ class PanierRepository
     function addProduit(string $idProduit, string $idClient)
     {
         $this->createPanierIfNotExists($idClient);
-        // var_dump($this->redis->exists($idClient . " " . $idProduit));
-        if ($this->redis->exists($idClient . " " . $idProduit)) {
-            // echo "product exists";
+        if ($this->redis->hexists($idClient, $idProduit)) {
             $this->addQteProduit(1, $idProduit, $idClient);
         } else {
-            // echo "product does not exist";
             $this->persistProduitInPanier($idClient, $idProduit, 1);
         }
     }
@@ -70,17 +67,27 @@ class PanierRepository
     {
         if ($this->redis->exists($idClient)) {
             $newQteProduit = $this->redis->hget($idClient, $idProduit) - $qteProduit;
-            $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
+            if ($newQteProduit <= 0) {
+                $this->redis->hdel($idClient, array($idProduit));
+            } else {
+                $this->persistProduitInPanier($idClient, $idProduit, $newQteProduit);
+            }
         } else {
             $this->createPanier($idClient);
         }
     }
 
-    function panierToCommande(string $idClient): Commande
+    function panierToCommande(string $idClient): Commande|null
     {
-        $this->createPanierIfNotExists($idClient);
-        $panier = $this->getPanier($idClient);
-        return new Commande($idClient, $panier->getProduits());
+        if ($this->redis->exists($idClient)) {
+            $panier = $this->getPanier($idClient);
+            $this->deletePanier($idClient);
+            $date = date("Y-m-d H:i:s");
+            return new Commande($idClient, $panier->getProduits(), $date);
+        } else {
+            $this->createPanier($idClient);
+            return null;
+        }
     }
 
     private function addTimePanier(string $idClient)

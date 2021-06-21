@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../Repository/PanierRepository.php";
+require_once __DIR__ . "/../Repository/CommandeRepository.php";
 
 if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
@@ -8,17 +9,22 @@ function addProduit($idProduit)
 {
     $panierRepo = new PanierRepository();
     $panierRepo->addProduit($idProduit, $_SESSION["clientID"]);
-    // var_dump($_SESSION["clientID"]);
 }
 
 function removeProduit($idProduit)
 {
-//TODO
+    $panierRepo = new PanierRepository();
+    $panierRepo->removeQteProduit(1, $idProduit, $_SESSION["clientID"]);
 }
 
 function addCommandeFromPanier()
 {
-//TODO
+    $panierRepo = new PanierRepository();
+    $commande = $panierRepo->panierToCommande($_SESSION["clientID"]);
+    if (!is_null($commande)) {
+        $commandeRepo = new CommandeRepository();
+        $commandeRepo->persistCommande($commande);
+    }
 }
 
 function getPanierClient(): Panier

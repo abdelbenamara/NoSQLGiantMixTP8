@@ -11,11 +11,6 @@ class Panier
     /**
      * @var string
      */
-    private string $idPanier;
-
-    /**
-     * @var string
-     */
     private string $idClient;
 
     /**
@@ -37,14 +32,6 @@ class Panier
     public function setProduits(array $produits): void
     {
         $this->produits = $produits;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdPanier(): string
-    {
-        return $this->idPanier;
     }
 
     /**

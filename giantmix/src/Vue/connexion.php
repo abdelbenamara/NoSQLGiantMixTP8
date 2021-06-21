@@ -23,7 +23,9 @@ if (isset($_POST["email"])) {
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
 <h2>Déjà client ? Enregistrez-vous !</h2>
+
 <form action="connexion.php" method="post">
     <div class="input-form">
         <input type="text" name="email" id="email" placeholder=" ">
@@ -39,5 +41,6 @@ if (isset($_POST["email"])) {
         <button type="submit">Se connecter</button>
     </div>
 </form>
+
 </body>
 </html>

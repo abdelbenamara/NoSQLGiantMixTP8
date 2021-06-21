@@ -2,7 +2,6 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 require_once __DIR__ . "/../Entity/Commande.php";
-require_once __DIR__ . "/PanierRepository.php";
 
 class CommandeRepository
 {
@@ -43,19 +42,20 @@ class CommandeRepository
     {
         $this->mongodb->selectDatabase($this->database)->selectCollection($this->commandes)->insertOne(array(
             "idClient" => $commande->getIdClient(),
-            "produits" => $commande->getDetailsProduits()
+            "produits" => $commande->getDetailsProduits(),
+            "date" => $commande->getDateCommande()
         ));
     }
 
-    function getAllCommandesByClient(int $idClient): array
+    function getAllCommandesByClient(string $idClient): array
     {
-        $documents = array();
+        $cmds = array();
         $cursor = $this->mongodb->selectDatabase($this->database)->selectCollection($this->commandes)->find();
         foreach ($cursor as $doc) {
             if ($doc["idClient"] == $idClient) {
-                array_push($documents, new Commande($doc["idClient"], $doc["produits"]));
+                array_push($cmds, new Commande($doc["idClient"], $doc["produits"], $doc["date"]));
             }
         }
-        return $documents;
+        return $cmds;
     }
 }

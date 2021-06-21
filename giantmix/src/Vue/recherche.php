@@ -40,13 +40,12 @@ if (isset($_GET["idProduit"])) {
         echo "<td>" . $p->getType() . "</td>";
         echo "<td>" . $p->getMarque() . "</td>";
         echo "<td>" . $p->getPrix() . "€</td>";
-        echo "<td><input type='hidden' name='idProduit' value='" . $p->getIdProduit() . "'></input></td>";
-        echo "<td><input type='hidden' name='q' value='" . $_GET["q"] . "'></input></td>";
+        echo "<td><input type='hidden' name='idProduit' value='" . $p->getIdProduit() . "'></td>";
+        echo "<td><input type='hidden' name='q' value='" . $_GET["q"] . "'></td>";
         echo "<td><button type='submit'> Ajouter au panier</button></td>";
         echo "</form>";
     }
     ?>
-
 </table>
 
 </body>

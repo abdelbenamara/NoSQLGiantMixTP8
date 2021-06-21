@@ -8,7 +8,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 if (isset($_GET["idProduit"])) {
     if ($_GET["do"] == "less") {
         removeProduit($_GET["idProduit"]);
-    } elseif ($_GET["do"] == "plus") {
+    } else if ($_GET["do"] == "plus") {
         addProduit($_GET["idProduit"]);
     }
 }
@@ -34,10 +34,8 @@ $panier = getPanierClient();
     </tr>
     <?php
     $repoProduit = new ProduitRepository();
-    $count = 0;
     foreach ($panier->getProduits() as $idProduit => $qte) {
-        if ($count == 0) {
-            $count++;
+        if ($idProduit == "init") {
             continue;
         }
         $produit = $repoProduit->getProduit($idProduit);

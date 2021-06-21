@@ -19,27 +19,28 @@ if (isset($_POST["password"])) {
     <title>Page d'inscription</title>
 </head>
 <body>
+
 <div>Vous n'êtes pas déjà client ? Inscrivez-vous !</div>
 
 <form method="post" action="inscription.php">
 
     <div class="inscription-form">
-        <input type="text" name="prenom" id="prenom" placeholder=" ">
+        <input type="text" name="prenom" id="prenom" placeholder=" " required>
         <label for="prenom">Prénom</label>
     </div>
 
     <div class="inscription-form">
-        <input type="text" name="nom" id="nom" placeholder=" ">
+        <input type="text" name="nom" id="nom" placeholder=" " required>
         <label for="nom">Nom</label>
     </div>
 
     <div class="inscription-form">
-        <input type="text" name="email" id="email" placeholder=" ">
+        <input type="text" name="email" id="email" placeholder=" " required>
         <label for="email">Adresse mail</label>
     </div>
 
     <div class="inscription-form">
-        <input type="password" name="password" id="password" placeholder=" ">
+        <input type="password" name="password" id="password" placeholder=" " required>
         <label for="password">Mot de passe</label>
     </div>
 
@@ -47,5 +48,6 @@ if (isset($_POST["password"])) {
         <button type="submit">S'inscrire</button>
     </div>
 </form>
+
 </body>
 </html>

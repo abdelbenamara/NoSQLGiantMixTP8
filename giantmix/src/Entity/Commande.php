@@ -2,11 +2,11 @@
 
 class Commande
 {
-    function __construct(string $idClient, array|object $detailsProduits)
+    function __construct(string $idClient, array|object $detailsProduits, string $dateCommande)
     {
         $this->idClient = $idClient;
-        $this->detailsProduits = $detailsProduits;
-        $this->dateCommande = date("Y-m-d H:i:s");
+        $this->setDetailsProduits($detailsProduits);
+        $this->setDateCommande($dateCommande);
     }
 
     /**
@@ -51,7 +51,7 @@ class Commande
     /**
      * @return string
      */
-    public function getDateCommande()
+    public function getDateCommande(): string
     {
         return $this->dateCommande;
     }
@@ -59,7 +59,7 @@ class Commande
     /**
      * @param string $dateCommande
      */
-    public function setDateCommande($dateCommande): void
+    public function setDateCommande(string $dateCommande): void
     {
         $this->dateCommande = $dateCommande;
     }
