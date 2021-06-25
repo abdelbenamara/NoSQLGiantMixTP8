@@ -1,7 +1,7 @@
-# Context
+# Contexte
 
-Ce repository contient les livrable du projet NoSQLGiantMix (TP8), projet final du cours de bases de données non SQL de la MIAGE Paris 1 Panthéon Sorbonne.
-Il s'agit d'un site de e-commerce simplifié possédant les fonctionnalitées suivantes : 
+Ce repository contient les livrables du projet NoSQLGiantMix (TP8), projet final du cours de bases de données non SQL de la MIAGE Paris 1 Panthéon Sorbonne.
+Il s'agit d'un site d'e-commerce simplifié possédant les fonctionnalitées suivantes : 
 
 * Inscription
 * Connection
@@ -14,26 +14,27 @@ Il s'agit d'un site de e-commerce simplifié possédant les fonctionnalitées su
 
 # Technologies
 
-* Redis
+* [Redis](https://redis.io/download)
 
-Pour la persistance des paniers clients, objets temporaires stcokés pendant 5 minutes
+Pour la persistance des paniers clients sous forme d'objets temporaires stcokés pendant 5 minutes.
 
-* ElasticSearch
+* [ElasticSearch](https://www.elastic.co/fr/downloads/elasticsearch)
 
-Peristance des produits. Permet de chercher les produits sur plusieurs de ses champs avec une recherche syntaxique de proximité (fuzzyness)
+Peristance des produits permettant de chercher ces derniers sur plusieurs de leurs champs avec une recherche syntaxique de proximité (fuzzyness).
 
-* MongoDB
+* [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
 
-Persistance des commandes et des données clients.
-
-* PHP
+Persistance des commandes et des informations de clients.
 
 # Prérequis
 
-* PHP 7.4 ou plus
-* Plugin MongoDB pour php 7.4 ou plus
+* [PHP](https://www.php.net/downloads.php) 7.4 ou plus
+
+* Extension [MongoDB PHP Driver](https://www.php.net/manual/fr/mongodb.installation.php) pour PHP 7.4 ou plus
+
+* [Composer](https://getcomposer.org/download/)
    
-# Base de données locales
+## Bases de données locales
 
 * Serveur local MongoDB en cours d'éxécution
 * Serveur local ElasticSearch contenant des données produits en cours d'éxécution :
@@ -50,13 +51,17 @@ Persistance des commandes et des données clients.
 
 # Lancer le projet
 
-1 - Cloner le repository sur votre poste
+1 - Se rendre vous dans le dossier ``` giantmix ```
 
-2 - Installer les dépendances
-```bash
+2 - Ouvrir un terminal et installer les dépendances à l'aide de composer
+```
 composer update
 composer install
 ```
-4 - Lancer un serveur php 7.4+
 
-3 - ouvrir ../giantmix/index.php
+3 - Lancer un serveur PHP built-in server en renseignant un port disponible (e.g. 8043)
+```
+php -S localhost:8043
+```
+
+4 - Ouvrir un navigateur web à l'adresse renseignée au lancement du serveur
