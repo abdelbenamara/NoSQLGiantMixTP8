@@ -38,7 +38,7 @@ Persistance des commandes et des informations de clients.
 
 * Serveur local MongoDB en cours d'éxécution
 * Serveur local ElasticSearch contenant des données produits en cours d'éxécution :
-    * Index : Product
+    * Index : product
     * Format :
         {
          "nom": "x",
