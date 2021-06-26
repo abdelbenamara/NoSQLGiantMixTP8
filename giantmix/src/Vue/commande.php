@@ -23,83 +23,61 @@ $commandes = getAllCommande()
 <head>
     <meta charset="UTF-8">
     <title>Commande</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/commande.css">
 </head>
+
 <body>
 
-<div>
-    <h2>Vos commandes</h2>
+<div class="page">
+    <div class="page-top">
+        <h2>Vos commandes</h2>
 
-    <form action="accueil.php" method="post">
-        <input type="hidden" name="disconnect">
-        <button type="submit">Se déconnecter</button>
-    </form>
-</div>
+        <div class="nav-zone">
+            <a href="recherche.php">
+                <button>Nos produits</button>
+            </a>
+            <a href="panier.php">
+                <button>Votre panier</button>
+            </a>
+            <form action="accueil.php" method="post">
+                <input type="hidden" name="disconnect">
+                <button type="submit">Se déconnecter</button>
+            </form>
+        </div>
+    </div>
 
-<table>
-    <tr>
-        <td>Numéro de commande</td>
-        <td>Date de la commande</td>
-        <td>Total (euros)</td>
-    </tr>
-    <?php foreach ($commandes as $cmd) {
-        echo "<tr><td>" . $cmd->getIdClient() . "</td>";
-        echo "<td>" . $cmd->getDateCommande() . "</td>";
-        echo "<td>" . calculateTotalOfCommande($cmd) . "</td>";
-        if (!isset($_POST["displayDetails"])) {
-            ?>
-            <td>
-                <form action='commande.php' method='post'>
-                    <button type="submit">Afficher les détails de la commande</button>
-                    <input type="hidden" name="displayDetails">
-                </form>
-            </td>
-            <?php
-        }
-        if (isset($_POST["displayDetails"])) {
-            ?>
-            <td>
+    <div class="product-zone">
+        <?php foreach ($commandes as $cmd) {
+            echo "<div class='commande-zone'>";
+            echo "<span>Commande n°" . $cmd->getIdCommande() . "</span>";
+            echo "<span>Passée le " . $cmd->getDateCommande() . "</span>";
+            echo "<span>Total de " . calculateTotalOfCommande($cmd) . " €</span>";
+            if (!isset($_POST["displayDetails"]) or $_POST["displayDetails"] != $cmd->getIdCommande()) {
+                echo "<form action='commande.php' method='post'>
+                      <button type='submit'>Afficher les détails de la commande</button>
+                      <input type='hidden' name='displayDetails' value='" . $cmd->getIdCommande() . "'>
+                      </form></div>";
+            } else if ($_POST["displayDetails"] == $cmd->getIdCommande()) {
+                ?>
                 <form action='commande.php' method='post'>
                     <button type="submit">Masquer les détails de la commande</button>
                     <input type="hidden" name="hideDetails">
                 </form>
-            </td>
-            <div>
-                <table>
-                    <tr>
-                        <td>Produit</td>
-                        <td>Quantité</td>
-                        <td>Prix (euros)</td>
-                    </tr>
-                    <?php foreach ($cmd->getDetailsProduits() as $idProduit => $qte) {
-                        if ($idProduit == "init") {
-                            continue;
-                        }
-                        $produit = getObjectFromIdProduit($idProduit);
-                        echo "<tr><td>" . $produit->getNom() . "</td>";
-                        echo "<td>" . $qte . "</td>";
-                        echo "<td>" . $produit->getPrix() . "</td></tr>";
-                    } ?>
-                </table>
-            </div>
-            <?php
-        }
-    } ?>
-</table>
-
-<div>
-    <a href="recherche.php">
-        <button>Nos produits</button>
-    </a>
-    <a href="panier.php">
-        <button>Votre panier</button>
-    </a>
-</div>
-
-<div>
-    <form action="accueil.php" method="post">
-        <input type="hidden" name="disconnect">
-        <button type="submit">Se déconnecter</button>
-    </form>
+                <?php
+                echo "</div>";
+                foreach ($cmd->getDetailsProduits() as $idProduit => $qte) {
+                    if ($idProduit == "init") {
+                        continue;
+                    }
+                    $produit = getObjectFromIdProduit($idProduit);
+                    echo "<div class='commande-info'><span>" . $produit->getNom() . "</span>
+                          <span>x" . $qte . "</span>
+                          <span>" . $produit->getPrix() . " €</span></div>";
+                }
+            }
+        } ?>
+    </div>
 </div>
 
 </body>

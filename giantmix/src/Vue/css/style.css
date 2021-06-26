@@ -1,0 +1,36 @@
+body {
+    margin: 100px;
+    font-family: arial, serif;
+}
+
+.page-top {
+    display: inline-grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+
+.nav-zone {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 8px;
+}
+
+.nav-zone button {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: 0;
+    padding: 8px 0;
+    cursor: pointer;
+    color: white;
+    background-color: #ff9234;
+}
+
+button:focus, button:hover {
+    background-color: #d92027
+}

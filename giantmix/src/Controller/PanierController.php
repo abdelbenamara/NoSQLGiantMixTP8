@@ -32,3 +32,9 @@ function getPanierClient(): Panier
     $panierRepo = new PanierRepository();
     return $panierRepo->getPanier($_SESSION["clientID"]);
 }
+
+function getHeureFinPanier(): string
+{
+    $panierRepo = new PanierRepository();
+    return $panierRepo->getHeureDeFinPanier($_SESSION["clientID"]);
+}

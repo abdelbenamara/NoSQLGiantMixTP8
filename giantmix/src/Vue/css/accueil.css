@@ -1,0 +1,58 @@
+.page {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+
+.page h1 {
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 1.2em 0;
+}
+
+input, label, button {
+    transition: all .3s;
+}
+
+input {
+    padding: 8px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid grey;
+}
+
+input::placeholder {
+    opacity: 0;
+}
+
+input:focus, input:not(:placeholder-shown) {
+    border-bottom: 2px solid red;
+}
+
+input:not(:placeholder-shown) ~ label, input:focus ~ label {
+    transform: translate(10px, -30px) scale(.8)
+}
+
+label {
+    transform: translate(8px, -16px);
+    cursor: text;
+    transform-origin: left top;
+    position: absolute;
+}
+
+.submit-form {
+    text-align: right;
+}
+
+button {
+    width: 10%;
+}

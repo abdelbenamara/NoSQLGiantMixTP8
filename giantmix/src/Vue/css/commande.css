@@ -1,0 +1,30 @@
+.page {
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+    align-items: center;
+}
+
+.product-zone {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.commande-zone {
+    display: inline-grid;
+    grid-template-columns: 16fr 11fr 11fr 11fr;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.commande-info {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.product-zone button {
+    width: 100%;
+}

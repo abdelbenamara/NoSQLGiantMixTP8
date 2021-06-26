@@ -53,7 +53,9 @@ class CommandeRepository
         $cursor = $this->mongodb->selectDatabase($this->database)->selectCollection($this->commandes)->find();
         foreach ($cursor as $doc) {
             if ($doc["idClient"] == $idClient) {
-                array_push($cmds, new Commande($doc["idClient"], $doc["produits"], $doc["date"]));
+                $cmd = new Commande($doc["idClient"], $doc["produits"], $doc["date"]);
+                $cmd->setIdCommande($doc["_id"]);
+                array_push($cmds, $cmd);
             }
         }
         return $cmds;

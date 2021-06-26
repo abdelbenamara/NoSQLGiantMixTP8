@@ -1,0 +1,41 @@
+.page {
+    display: grid;
+    grid-template-rows: 1fr 2fr 5fr;
+    align-items: center;
+}
+
+.recherche-zone {
+    display: inline-grid;
+    grid-template-columns: 25fr 3fr;
+    column-gap: 8px;
+}
+
+.recherche-zone form:nth-child(odd) {
+    display: inline-grid;
+    grid-template-columns: 10fr 26fr 5fr;
+    column-gap: 8px;
+    text-align: right;
+}
+
+.recherche-zone form:nth-child(even) {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+}
+
+.search-label {
+    align-self: center;
+}
+
+.product-zone {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.product-zone form {
+    display: inline-grid;
+    grid-template-columns: 6fr 6fr 6fr 7fr 3fr;
+    column-gap: 2px;
+    align-items: center;
+}

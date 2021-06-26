@@ -12,6 +12,11 @@ class Commande
     /**
      * @var string
      */
+    private string $idCommande;
+
+    /**
+     * @var string
+     */
     private string $idClient;
 
     /**
@@ -25,19 +30,19 @@ class Commande
     private array|object $detailsProduits;
 
     /**
-     * @return array|object
+     * @return string
      */
-    public function getDetailsProduits(): array|object
+    public function getIdCommande(): string
     {
-        return $this->detailsProduits;
+        return $this->idCommande;
     }
 
     /**
-     * @param array|object $detailsProduits
+     * @param string $idCommande
      */
-    public function setDetailsProduits(object|array $detailsProduits): void
+    public function setIdCommande(string $idCommande): void
     {
-        $this->detailsProduits = $detailsProduits;
+        $this->idCommande = $idCommande;
     }
 
     /**
@@ -64,4 +69,19 @@ class Commande
         $this->dateCommande = $dateCommande;
     }
 
+    /**
+     * @return array|object
+     */
+    public function getDetailsProduits(): array|object
+    {
+        return $this->detailsProduits;
+    }
+
+    /**
+     * @param array|object $detailsProduits
+     */
+    public function setDetailsProduits(object|array $detailsProduits): void
+    {
+        $this->detailsProduits = $detailsProduits;
+    }
 }

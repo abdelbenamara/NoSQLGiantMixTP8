@@ -25,59 +25,66 @@ if (isset($_SESSION["clientID"])) {
 <head>
     <meta charset="UTF-8">
     <title>Page d'accueil</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/accueil.css">
 </head>
+
 <body>
 
-<div>
-    <h2>Vous n'êtes pas encore client ? Inscrivez-vous !</h2>
+<div class="page">
+    <h1>Giant Mix Project</h1>
 
-    <form action="accueil.php" method="post">
+    <div class="content">
+        <div>
+            <h2>Vous n'êtes pas encore client ? Inscrivez-vous !</h2>
 
-        <div class="input-form">
-            <input type="text" name="prenom" id="prenom" placeholder=" " required>
-            <label for="prenom">Prénom</label>
+            <form action="accueil.php" method="post">
+                <div class="input-form">
+                    <input type="text" name="prenom" id="prenom" placeholder=" " required>
+                    <label for="prenom">Prénom</label>
+                </div>
+
+                <div class="input-form">
+                    <input type="text" name="nom" id="nom" placeholder=" " required>
+                    <label for="nom">Nom</label>
+                </div>
+
+                <div class="input-form">
+                    <input type="text" name="email" id="email" placeholder=" " required>
+                    <label for="email">Adresse mail</label>
+                </div>
+
+                <div class="input-form">
+                    <input type="password" name="password" id="password" placeholder=" " required>
+                    <label for="password">Mot de passe</label>
+                </div>
+
+                <div class="submit-form">
+                    <button type="submit">S'inscrire</button>
+                </div>
+            </form>
         </div>
 
-        <div class="input-form">
-            <input type="text" name="nom" id="nom" placeholder=" " required>
-            <label for="nom">Nom</label>
-        </div>
+        <div>
+            <h2>Déjà client ? Connectez-vous !</h2>
 
-        <div class="input-form">
-            <input type="text" name="email" id="email" placeholder=" " required>
-            <label for="email">Adresse mail</label>
-        </div>
+            <form action="accueil.php" method="post">
+                <div class="input-form">
+                    <input type="text" name="email" id="email" placeholder=" " required>
+                    <label for="email">Adresse mail</label>
+                </div>
 
-        <div class="input-form">
-            <input type="password" name="password" id="password" placeholder=" " required>
-            <label for="password">Mot de passe</label>
-        </div>
+                <div class="input-form">
+                    <input type="password" name="password" id="password" placeholder=" " required>
+                    <label for="password">Mot de passe</label>
+                </div>
 
-        <div class="submit-form">
-            <button type="submit">S'inscrire</button>
+                <div class="submit-form">
+                    <button type="submit">Se connecter</button>
+                </div>
+            </form>
         </div>
-    </form>
-</div>
-
-<div>
-    <h2>Déjà client ? Connectez-vous !</h2>
-
-    <form action="accueil.php" method="post">
-        <div class="input-form">
-            <input type="text" name="email" id="email" placeholder=" " required>
-            <label for="email">Adresse mail</label>
-        </div>
-
-        <div class="input-form">
-            <input type="password" name="password" id="password" placeholder=" " required>
-            <label for="password">Mot de passe</label>
-        </div>
-
-        <div class="submit-form">
-            <button type="submit">Se connecter</button>
-        </div>
-    </form>
+    </div>
 </div>
 
 </body>

@@ -26,63 +26,65 @@ if (isset($_GET["q"])) {
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <!-- <link rel="stylesheet" href="styleRecherche.css" />-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/recherche.css">
 </head>
+
 <body>
 
-<div>
-    <h2>Nos produits</h2>
+<div class="page">
+    <div class="page-top">
+        <h2>Nos produits</h2>
 
-    <form action="accueil.php" method="post">
-        <input type="hidden" name="disconnect">
-        <button type="submit">Se déconnecter</button>
-    </form>
-</div>
+        <div class="nav-zone">
+            <a href="panier.php">
+                <button>Votre panier</button>
+            </a>
+            <a href="commande.php">
+                <button>Vos commandes</button>
+            </a>
+            <form action="accueil.php" method="post">
+                <input type="hidden" name="disconnect">
+                <button type="submit">Se déconnecter</button>
+            </form>
+        </div>
+    </div>
 
-<div>
-    <form action="recherche.php" method="get">
-        <label for="site-search">Recherchez un produit : </label>
-        <input type="search" id="site-search" name="q" aria-label="Rechercher un produit ici">
-        <button type="submit">Rechercher</button>
-    </form>
-
-    <?php
-    if (isset($_GET["q"]) or isset($_GET["idProduit"])) {
-        ?>
-        <form action="recherche.php" method="post">
-            <input type="hidden" name="cancel">
-            <button type="submit">Annuler</button>
+    <div class="recherche-zone">
+        <form action="recherche.php" method="get">
+            <label class="search-label" for="site-search">Recherchez un produit : </label>
+            <input type="search" name="q" aria-label="Rechercher un produit ici">
+            <button type="submit">Rechercher</button>
         </form>
+
         <?php
-    }
-    ?>
-</div>
-
-<table>
-    <?php
-    foreach ($product as $p) {
-        echo "<form method='get' action='recherche.php'>";
-        echo "<tr><td>" . $p->getNom() . "</td>";
-        echo "<td>" . $p->getType() . "</td>";
-        echo "<td>" . $p->getMarque() . "</td>";
-        echo "<td>" . $p->getPrix() . "€</td>";
-        echo "<td><input type='hidden' name='idProduit' value='" . $p->getIdProduit() . "'></td>";
-        if (isset($_GET["q"])) {
-            echo "<td><input type='hidden' name='q' value='" . $_GET["q"] . "'></td>";
+        if (isset($_GET["q"]) or isset($_GET["idProduit"])) {
+            ?>
+            <form action="recherche.php" method="post">
+                <input type="hidden" name="cancel">
+                <button type="submit">Réinitialiser</button>
+            </form>
+            <?php
         }
-        echo "<td><button type='submit'> Ajouter au panier</button></td>";
-        echo "</form>";
-    }
-    ?>
-</table>
+        ?>
+    </div>
 
-<div>
-    <a href="panier.php">
-        <button>Votre panier</button>
-    </a>
-    <a href="commande.php">
-        <button>Vos commandes</button>
-    </a>
+    <div class="product-zone">
+        <?php
+        foreach ($product as $p) {
+            echo "<form method='get' action='recherche.php'>
+                  <span>" . $p->getNom() . "</span>
+                  <span>" . $p->getType() . "</span>
+                  <span>" . $p->getMarque() . "</span>
+                  <span>" . $p->getPrix() . " €</span>
+                  <input type='hidden' name='idProduit' value='" . $p->getIdProduit() . "'>";
+            if (isset($_GET["q"])) {
+                echo "<input type='hidden' name='q' value='" . $_GET["q"] . "'>";
+            }
+            echo "<button type='submit'> Ajouter au panier</button></form>";
+        }
+        ?>
+    </div>
 </div>
 
 </body>

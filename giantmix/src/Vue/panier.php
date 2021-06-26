@@ -17,6 +17,7 @@ if (isset($_GET["idProduit"])) {
 }
 
 $panier = getPanierClient();
+$heureFinPanier = getHeureFinPanier();
 ?>
 
 <!DOCTYPE html>
@@ -24,69 +25,68 @@ $panier = getPanierClient();
 <head>
     <meta charset="UTF-8">
     <title>Panier</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/panier.css">
 </head>
+
 <body>
 
-<div>
-    <h2>Votre panier</h2>
+<div class="page">
+    <div class="page-top">
+        <h2>Votre panier <?php
+            if (count($panier->getProduits()) > 1) {
+                echo "<span>(disponible jusqu'à " . $heureFinPanier . ")</span>";
+            }
+            ?>
+        </h2>
 
-    <form action="accueil.php" method="post">
-        <input type="hidden" name="disconnect">
-        <button type="submit">Se déconnecter</button>
-    </form>
-</div>
+        <div class="nav-zone">
+            <a href="commande.php">
+                <button>Vos commandes</button>
+            </a>
+            <a href="recherche.php">
+                <button>Nos produits</button>
+            </a>
+            <form action="accueil.php" method="post">
+                <input type="hidden" name="disconnect">
+                <button type="submit">Se déconnecter</button>
+            </form>
+        </div>
+    </div>
 
-<table>
-    <tr>
-        <td>Produit</td>
-        <td>Quantité</td>
-        <td>Prix (euros)</td>
-    </tr>
-    <?php
-    $repoProduit = new ProduitRepository();
-    foreach ($panier->getProduits() as $idProduit => $qte) {
-        if ($idProduit == "init") {
-            continue;
+    <div class="product-zone">
+        <?php
+        $repoProduit = new ProduitRepository();
+        foreach ($panier->getProduits() as $idProduit => $qte) {
+            if ($idProduit == "init") {
+                continue;
+            }
+            $produit = $repoProduit->getProduit($idProduit);
+            echo "<div><span>" . $produit->getNom() . "</span>";
+            echo "<span>x" . $qte . "</span>";
+            echo "<span>" . $produit->getPrix() . " €</span>";
+            echo "<form action='panier.php' method='get'>
+                  <button type='submit'>Ajouter (+1)</button>
+                  <input type='hidden' name='idProduit' value='" . $idProduit . "'> 
+                  <input type='hidden' name='do' value='plus'></form>";
+            echo "<form action='panier.php' method='get'>
+                  <button type='submit'>Retirer (-1)</button>
+                  <input type='hidden' name='idProduit' value='" . $idProduit . "'> 
+                  <input type='hidden' name='do' value='less'></form></div>";
         }
-        $produit = $repoProduit->getProduit($idProduit);
-        echo "<tr><td>" . $produit->getNom() . "</td>";
-        echo "<td>" . $qte . "</td>";
-        echo "<td>" . $produit->getPrix() . "</td>";
-        echo "<td><form action='panier.php' method='get'><button type='submit'>+</button>
-              <input type='hidden' name='idProduit' value='" . $idProduit . "'> 
-              <input type='hidden' name='do' value='plus'> 
-              </form></td>
-            ";
-        echo "<td><form action='panier.php' method='get'><button type='submit'>-</button>
-              <input type='hidden' name='idProduit' value='" . $idProduit . "'> 
-              <input type='hidden' name='do' value='less'> 
-              </form></td></tr>
-            ";
-    }
-    ?>
-</table>
+        ?>
+    </div>
 
-<div class="submit-form">
-    <form action="commande.php" method="get">
-        <button type="submit">Passer la commande</button>
-        <input type="hidden" name="commandToPanier" value="1">
-    </form>
+    <div class="commande-form">
+        <form action="commande.php" method="get">
+            <button type="submit">Passer la commande</button>
+            <input type="hidden" name="commandToPanier" value="1">
+        </form>
+    </div>
 </div>
 
 <div>
-    <a href="commande.php">
-        <button>Vos commandes</button>
-    </a>
-    <a href="recherche.php">
-        <button>Nos produits</button>
-    </a>
-</div>
 
-<div>
-    <form action="accueil.php" method="post">
-        <input type="hidden" name="disconnect">
-        <button type="submit">Se déconnecter</button>
-    </form>
 </div>
 
 </body>

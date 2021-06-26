@@ -2,17 +2,6 @@
 
 class Panier
 {
-
-    public function __construct(string $idClient)
-    {
-        $this->idClient = $idClient;
-    }
-
-    /**
-     * @var string
-     */
-    private string $idClient;
-
     /**
      * @var array
      */
@@ -33,13 +22,4 @@ class Panier
     {
         $this->produits = $produits;
     }
-
-    /**
-     * @return string
-     */
-    public function getIdClient(): string
-    {
-        return $this->idClient;
-    }
-
 }

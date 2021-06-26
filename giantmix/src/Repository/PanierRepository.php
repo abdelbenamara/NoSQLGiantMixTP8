@@ -32,18 +32,26 @@ class PanierRepository
         $this->addTimePanier($idClient);
     }
 
+    function deletePanier(string $idClient)
+    {
+        $this->redis->del($idClient);
+    }
+
     function getPanier(string $idClient): Panier
     {
         $this->createPanierIfNotExists($idClient);
         $redisProduits = $this->redis->hgetall($idClient);
-        $panier = new Panier($idClient);
+        $panier = new Panier();
         $panier->setProduits($redisProduits);
         return $panier;
     }
 
-    function deletePanier(string $idClient)
+    function getHeureDeFinPanier(string $idClient): string
     {
-        $this->redis->del($idClient);
+        $this->createPanierIfNotExists($idClient);
+        $ttl = $this->redis->ttl($idClient);
+        date_default_timezone_set('Europe/Paris');
+        return date("H:i:s", strtotime(date("H:i:s") . " + " . $ttl . " SECONDS"));
     }
 
     function addProduit(string $idProduit, string $idClient)
@@ -82,6 +90,7 @@ class PanierRepository
         if ($this->redis->exists($idClient)) {
             $panier = $this->getPanier($idClient);
             $this->deletePanier($idClient);
+            date_default_timezone_set('Europe/Paris');
             $date = date("Y-m-d H:i:s");
             return new Commande($idClient, $panier->getProduits(), $date);
         } else {

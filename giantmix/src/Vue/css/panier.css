@@ -1,0 +1,32 @@
+.page {
+    display: grid;
+    grid-template-rows: 2fr 15fr 1fr;
+    align-items: center;
+}
+
+.page-top h2 span {
+    font-size: medium;
+    font-weight: normal;
+}
+
+.commande-form button {
+    width: 20%;
+}
+
+.product-zone {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.product-zone div {
+    display: inline-grid;
+    grid-template-columns: 14fr 14fr 15fr 6fr 6fr;
+    column-gap: 8px;
+    align-items: center;
+}
+
+.product-zone button {
+    width: 100%;
+}
