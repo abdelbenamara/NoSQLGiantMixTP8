@@ -1,12 +1,12 @@
 # Contexte
 
-Ce repository contient les livrables du projet NoSQLGiantMix (TP8), projet final du cours de bases de données non SQL de la MIAGE Paris 1 Panthéon Sorbonne.
+Ce repository contient les livrables du projet NoSQLGiantMix (TP8), projet final du cours de bases de données No SQL de la MIAGE Paris 1 Panthéon Sorbonne.
 Il s'agit d'un site d'e-commerce simplifié possédant les fonctionnalitées suivantes : 
 
 * Inscription
 * Connection
 * Recherche d'articles
-* Ajout d'article au Panier
+* Ajout d'articles au Panier
 * Modification du panier
 * Passage de commandes
 * Affichage des commandes
@@ -16,7 +16,7 @@ Il s'agit d'un site d'e-commerce simplifié possédant les fonctionnalitées sui
 
 * [Redis](https://redis.io/download)
 
-Pour la persistance des paniers clients sous forme d'objets temporaires stcokés pendant 5 minutes.
+Pour la persistance des paniers clients sous forme d'objets temporaires stockés pendant 5 minutes.
 
 * [ElasticSearch](https://www.elastic.co/fr/downloads/elasticsearch)
 
