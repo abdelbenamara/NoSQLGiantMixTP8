@@ -1,6 +1,6 @@
 # Contexte
 
-Ce repository contient les livrables du projet NoSQLGiantMix (TP8), projet final du cours de bases de données No SQL de la MIAGE Paris 1 Panthéon Sorbonne.
+Ce repository contient les livrables du projet NoSQLGiantMix (TP8), projet final du cours de bases de données NoSQL de la MIAGE Paris 1 Panthéon Sorbonne.
 Il s'agit d'un site d'e-commerce simplifié possédant les fonctionnalitées suivantes : 
 
 * Inscription
