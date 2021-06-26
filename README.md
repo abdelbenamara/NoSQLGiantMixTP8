@@ -46,7 +46,31 @@ Persistance des commandes et des informations de clients.
          "prix": "x",
          "Marque": "x"
         }
-
+   * Exemple : 
+   
+       {
+         "nom": "Lenovo ThinkPad 14",
+         "type": "Ordinateur",
+         "prix": "550",
+         "Marque": "Lenovo"
+        }
+        
+        {
+         "nom": "Dell Latitude x140",
+         "type": "Ordinateur",
+         "prix": "580",
+         "Marque": "Dell"
+        }
+         
+        {
+         "nom": "Lenovo ThinkPad 180",
+         "type": "Ordinateur",
+         "prix": "750",
+         "Marque": "Lenovo"
+        }
+        
+        
+        
 * Serveur local Redis en cours d'éxécution
 
 # Lancer le projet
