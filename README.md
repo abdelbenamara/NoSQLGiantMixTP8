@@ -51,7 +51,7 @@ Persistance des commandes et des informations de clients.
 
 # Lancer le projet
 
-1 - Se rendre vous dans le dossier ``` giantmix ```
+1 - Se rendre dans le dossier ``` giantmix ```
 
 2 - Ouvrir un terminal et installer les dépendances à l'aide de composer
 ```
